@@ -36,7 +36,8 @@ main = do
 
 -- Задача 1. Да се намери сумата от цифрите на дадено число
 sumOfDigits :: Integer -> Integer
-sumOfDigits n = -1
+sumOfDigits 0 = 0
+sumOfDigits n = n `mod` 10 + sumOfDigits (n `div` 10)
 
 -- Задача 2. Да се намери сумата на целите числа в целочислен интервал
 intervalSum :: Integer -> Integer -> Integer
