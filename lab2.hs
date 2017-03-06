@@ -41,7 +41,10 @@ sumOfDigits n = n `mod` 10 + sumOfDigits (n `div` 10)
 
 -- Задача 2. Да се намери сумата на целите числа в целочислен интервал
 intervalSum :: Integer -> Integer -> Integer
-intervalSum a b = -1
+intervalSum a b =
+  if a > b
+    then 0
+    else a + intervalSum (a + 1) b
 
 -- Задача 3. Да се намери сборът на всички делители на дадено число
 -- Заб.: Вкл. 1 и самото число
