@@ -88,4 +88,10 @@ isPerfect n = sumOfDivisors n == 2 * n
 
 -- Задача 9. Да се дефинира функция, която намира сумата на всички прости делители на едно число
 sumOfPrimeDivisors :: Integer -> Integer
-sumOfPrimeDivisors n = -1
+sumOfPrimeDivisors n = helper 1
+  where
+    helper :: Integer -> Integer
+    helper d
+      |d > n                     = 0
+      |mod n d == 0 && isPrime d = d + helper (d + 1)
+      |otherwise                 = helper (d + 1)
