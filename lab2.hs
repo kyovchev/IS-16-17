@@ -77,7 +77,7 @@ nonDecreasingNumber n = False
 -- Задача 8. Да се напише предикат, който връща дали едно число е съвършено, т.е. равно на сумата от делите си
 -- Пример: 6 = 1 + 2 + 3
 isPerfect :: Integer -> Bool
-isPerfect n = False
+isPerfect n = sumOfDivisors n == 2 * n
 
 -- Задача 9. Да се дефинира функция, която намира сумата на всички прости делители на едно число
 sumOfPrimeDivisors :: Integer -> Integer
