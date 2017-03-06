@@ -60,7 +60,14 @@ sumOfDivisors n = helper 1
 -- Задача 4. Да се провери дали дадено число е просто
 -- Заб.: 1 не е нито просто, нито съставно
 isPrime :: Integer -> Bool
-isPrime n = False
+isPrime 1 = False
+isPrime n = helper 2
+  where
+    helper :: Integer -> Bool
+    helper d
+      |d == n       = True
+      |mod n d == 0 = False
+      |otherwise    = helper (d + 1)
 
 -- Задача 5. Да се обърнат цифрите на дадено число
 reverseDigits :: Integer -> Integer
