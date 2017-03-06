@@ -49,7 +49,13 @@ intervalSum a b =
 -- Задача 3. Да се намери сборът на всички делители на дадено число
 -- Заб.: Вкл. 1 и самото число
 sumOfDivisors :: Integer -> Integer
-sumOfDivisors n = -1
+sumOfDivisors n = helper 1
+  where
+    helper :: Integer -> Integer
+    helper d
+      |d > n        = 0
+      |mod n d == 0 = d + helper (d + 1)
+      |otherwise    = helper (d + 1)
 
 -- Задача 4. Да се провери дали дадено число е просто
 -- Заб.: 1 не е нито просто, нито съставно
