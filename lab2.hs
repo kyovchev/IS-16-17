@@ -71,15 +71,34 @@ isPrime n = helper 2
 
 -- Задача 5. Да се обърнат цифрите на дадено число
 reverseDigits :: Integer -> Integer
-reverseDigits n = -1
+reverseDigits x 
+  | otherwise = helper 0 x
+  where 
+     helper :: Integer -> Integer -> Integer 
+     helper y x 
+      | x < 10 && x >= 0 = y + x
+      | x < 0 = -1 
+      | otherwise = helper ((y + (mod x 10))*10) (div x 10)
 
 -- Задача 6. Да се напише функция, намираща броя на срещанията на дадена цифра в записа на число
-countOccurences :: Integer -> Integer -> Integer
-countOccurences d n = -1
+countOccurences :: Integer -> Integer ->Integer
+countOccurences digit num = helper num digit 1
+     where
+      helper :: Integer -> Integer -> Integer-> Integer 
+      helper x y z 
+       | x==0 = x
+       | otherwise = if (mod x 10) == y then z + helper (div x 10) y z else helper (div x 10) y z
 
 -- Задача 7. Да се напише предикат, който връща истина, ако цифрите на дадено число са в нарастващ ред от първата към последната
 nonDecreasingNumber :: Integer -> Bool
-nonDecreasingNumber n = False
+nonDecreasingNumber x
+ | x < 10 = True
+ | otherwise = if (helper x) == (-1)  then False else True 
+ where
+    helper :: Integer -> Integer
+    helper x
+     | x < 10 = 1 
+     | otherwise = if (mod x 10) >= (mod (div x 10) 10) then helper (div x 10) else (-1)
 
 -- Задача 8. Да се напише предикат, който връща дали едно число е съвършено, т.е. равно на сумата от делите си
 -- Пример: 6 = 1 + 2 + 3
