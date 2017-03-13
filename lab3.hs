@@ -17,8 +17,12 @@ main = do
 
 -- Задача 1. По зададени x и n, да се изчисли сумата: 1 + x + x^2 + x^3 + ... + x^n
 sumOfSeries :: Double -> Integer -> Double
-sumOfSeries x n = -1
+sumOfSeries x n 
+ | n == -1 = 0 
+ | otherwise = x^n + sumOfSeries x (n-1)
 
 -- Задача 2. Да се реши задача 1, чрез използване на не повече от n умножения
 sumOfSeriesFast :: Double -> Integer -> Double
-sumOfSeriesFast x n = -1
+sumOfSeriesFast x n 
+ | n == -1 = 0
+ | otherwise = 1 + x * sumOfSeriesFast x (n-1)
