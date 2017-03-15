@@ -8,15 +8,15 @@
 
 main :: IO()
 main = do
-  print (sumOfSeries 3 2)
-  print ("expected 13")
-  print ("---")
-  print (sumOfSeriesFast 3 3)
-  print ("expected 40")
-  print ("---")
-  print (sumOfSeriesIter 3 3)
-  print ("expected 40")
-  print ("---")
+ print (sumOfSeries 3 2)
+ print ("expected 13")
+ print ("---")
+ print (sumOfSeriesFast 3 3)
+ print ("expected 40")
+ print ("---")
+ print (sumOfSeriesIter 3 3)
+ print ("expected 40")
+ print ("---")
 
 -- Задача 1. По зададени x и n, да се изчисли сумата: 1 + x + x^2 + x^3 + ... + x^n
 sumOfSeries :: Double -> Integer -> Double
