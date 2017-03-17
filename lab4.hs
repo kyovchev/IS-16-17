@@ -78,7 +78,12 @@ memberOf findMe list
 
 -- Задача 6. Напишете функция, която премахва първото срещане на x в списъка xs
 removeFirstOcc :: Eq t => t -> [t] -> [t]
-removeFirstOcc _ _ = []
+removeFirstOcc removeMe list = if (helper removeMe list [])==[] then list else  (helper removeMe list [])
+ where
+    helper :: Eq t => t -> [t] -> [t] -> [t] 
+    helper removeMe list listForPrint 
+     | (null list) = list
+     | otherwise = if removeMe == (head list) then listForPrint++(tail list) else helper removeMe (tail list) (listForPrint++([(head list)])) 
 
 -- Задача 7. Напишете фунция, която връща елементът на позиция i в списъка xs
 -- Заб.: Индексираме от 0.
