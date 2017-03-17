@@ -48,41 +48,75 @@ main = do
 
 -- Задача 1. Напишете фукнция, която намира сумата на елементите на списък от цели числа
 sumIntList :: [Integer] -> Integer
-sumIntList _ = -1
+sumIntList list
+ | list==[] = 0 
+ | otherwise = (head list) + (sumIntList (tail list) )
 
 -- Задача 2. Напишете фукнция, която намира сумата на елементите на списък от реални числа
-sumDoubleList :: [Double] -> Double
-sumDoubleList _ = -1
+sumDoubleList :: [Double]->Double
+sumDoubleList list
+ | list==[]=0
+ | otherwise = (head list) + (sumDoubleList (tail list))
 
 -- Задача 3. Напишете фукнция, която намира сумата на елементите на списък от числа
 sumNumList :: Num t => [t] -> t
-sumNumList _ = -1
+sumNumList  list
+ | (null list)=0
+ | otherwise = (head list) + (sumNumList (tail list))
 
 -- Задача 4. Напишете фунция, която намира броя на елементите на списък
-countList :: [t] -> Integer
-countList _ = -1
+countList :: Eq t => [t] -> Integer
+countList list
+ | (null list) = 0
+ | otherwise = 1 + (countList (tail list))
 
 -- Задача 5. Напишете предикат, който проверява дали даден елемент се среща в списък
 memberOf :: Eq t => t -> [t] -> Bool
-memberOf _ _ = False
+memberOf findMe list
+ | (null list) = False
+ | otherwise = if findMe == (head list) then True else (memberOf findMe (tail list))
 
 -- Задача 6. Напишете функция, която премахва първото срещане на x в списъка xs
 removeFirstOcc :: Eq t => t -> [t] -> [t]
-removeFirstOcc _ _ = []
+removeFirstOcc removeMe list = if (helper removeMe list [])==[] then list else  (helper removeMe list [])
+ where
+    helper :: Eq t => t -> [t] -> [t] -> [t] 
+    helper removeMe list listForPrint 
+     | (null list) = list
+     | otherwise = if removeMe == (head list) then listForPrint++(tail list) else helper removeMe (tail list) (listForPrint++([(head list)])) 
 
 -- Задача 7. Напишете фунция, която връща елементът на позиция i в списъка xs
 -- Заб.: Индексираме от 0.
-elemAtIndex :: Integer -> [t] -> t
-elemAtIndex _ (x:xs) = x
+elemAtIndex :: Eq t => Integer -> [t] -> t
+elemAtIndex index list = helper index 0 list 
+    where 
+        helper :: Eq t => Integer -> Integer -> [t] -> t
+        helper index count list        
+         | (null list) = error ("Length of list is less then i!")
+         | otherwise = if index==count then (head list) else helper index (count+1) (tail list)  
+
 
 -- Задача 8. Напишете функция, която премахва всички срещания на x в списъка xs
 removeAllOcc :: Eq t => t -> [t] -> [t]
-removeAllOcc _ _ = []
+removeAllOcc removeMe list = if list == (removeFirstOcc removeMe list) then list else removeAllOcc removeMe (removeFirstOcc removeMe list) 
 
 -- Задача 9. Да се дефинира функция, която намира обединението на
 -- множествата, представени чрез списъците xs и ys
 unionSets :: Eq t => [t] -> [t] -> [t]
-unionSets _ _ = []
+unionSets list1 list2
+ | (null list1) && (null list2) = error ("bolt of list are empty!")
+ | (null list1) = list2
+ | (null list2) = list1
+ | otherwise =  (someFunc list1 [])++(helper (someFunc list1 [])  (someFunc list2 [] ))
+        where
+         helper :: Eq t => [t] -> [t] -> [t]
+         helper list1 list2 
+          | (null list1)=list2
+          | otherwise = helper (tail list1) (removeAllOcc (head list1) list2) 
+         someFunc:: Eq t => [t] -> [t]-> [t]
+         someFunc list listForReturn
+          | (null list) = listForReturn 
+          | otherwise = if [head list]++(removeFirstOcc (head list) (tail list)) == list then someFunc (tail list) ( listForReturn++[head list]) else someFunc (tail list) (listForReturn)
 
 -- Задача 10. Да се дефинира процедура, която намира сечението на две
 -- числови множества xs и ys, представени чрез списъци
