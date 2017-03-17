@@ -47,36 +47,42 @@ main = do
  print ("---")
 
 -- Задача 1. Напишете фукнция, която намира сумата на елементите на списък от цели числа
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 sumIntList :: [Integer] -> Integer
 sumIntList list
  | list == [] = 0 
  | otherwise = (head list) + (sumIntList (tail list))
 
 -- Задача 2. Напишете фукнция, която намира сумата на елементите на списък от реални числа
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 sumDoubleList :: [Double]->Double
 sumDoubleList list
  | list == [] = 0
  | otherwise = (head list) + (sumDoubleList (tail list))
 
 -- Задача 3. Напишете фукнция, която намира сумата на елементите на списък от числа
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 sumNumList :: Num t => [t] -> t
 sumNumList  list
  | (null list) = 0
  | otherwise = (head list) + (sumNumList (tail list))
 
 -- Задача 4. Напишете фунция, която намира броя на елементите на списък
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 countList :: Eq t => [t] -> Integer
 countList list
  | (null list) = 0
  | otherwise = 1 + (countList (tail list))
 
 -- Задача 5. Напишете предикат, който проверява дали даден елемент се среща в списък
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 memberOf :: Eq t => t -> [t] -> Bool
 memberOf findMe list
  | (null list) = False
  | otherwise = if findMe == (head list) then True else (memberOf findMe (tail list))
 
 -- Задача 6. Напишете функция, която премахва първото срещане на x в списъка xs
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 removeFirstOcc :: Eq t => t -> [t] -> [t]
 removeFirstOcc removeMe list = if (helper removeMe list []) == [] then list else  (helper removeMe list [])
  where
@@ -90,6 +96,7 @@ removeFirstOcc removeMe list = if (helper removeMe list []) == [] then list else
 
 -- Задача 7. Напишете фунция, която връща елементът на позиция i в списъка xs
 -- Заб.: Индексираме от 0.
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 elemAtIndex :: Eq t => Integer -> [t] -> t
 elemAtIndex index list = helper index 0 list 
  where 
@@ -99,6 +106,7 @@ elemAtIndex index list = helper index 0 list
    | otherwise = if index == count then (head list) else helper index (count + 1) (tail list)  
 
 -- Задача 8. Напишете функция, която премахва всички срещания на x в списъка xs
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 removeAllOcc :: Eq t => t -> [t] -> [t]
 removeAllOcc removeMe list = 
  if list == (removeFirstOcc removeMe list)
@@ -107,6 +115,7 @@ removeAllOcc removeMe list =
 
 -- Задача 9. Да се дефинира функция, която намира обединението на
 -- множествата, представени чрез списъците xs и ys
+-- Следващото решение е предложено от Георги Стойчев (https://github.com/GStoichev)
 unionSets :: Eq t => [t] -> [t] -> [t]
 unionSets list1 list2
  | (null list1) && (null list2) = error ("Both lists are empty!")
