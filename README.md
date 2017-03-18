@@ -15,3 +15,8 @@
 ### Полезни материали
 
 [Информация за git](https://github.com/kyovchev/IS-16-17/blob/master/git.md)
+
+### Неокончателни резултати
+
+[Домашно №1](https://docs.google.com/spreadsheets/d/1KqYCBUBJf98uytQ_fcEyv-s56rSD1FW3XYuzAOaOFS8/edit?usp=sharing)
+
